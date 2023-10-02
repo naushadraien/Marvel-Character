@@ -1,12 +1,12 @@
-import { Character } from "@/types/marveltypes";
-import { detailCharacter } from "@/utils/marvelApi";
-import Image from "next/image";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Character } from "@/types/marveltypes";
+import { detailCharacter } from "@/utils/marvelApi";
+import Image from "next/image";
 
 type Props = {
   params: {

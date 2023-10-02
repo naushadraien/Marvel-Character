@@ -1,4 +1,3 @@
-import { CharacterDataWrapper } from "@/types/marveltypes";
 import md5 from "md5";
 const API_BASE_URL = process.env.API_BASE_URL;
 const API_PUBLIC_KEY = process.env.API_PUBLIC_KEY;
