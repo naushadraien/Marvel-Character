@@ -3,6 +3,7 @@
 import { Character } from "@/types/marveltypes";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
+import Link from "next/link";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -11,6 +12,16 @@ export const columns: ColumnDef<Character>[] = [
   {
     accessorKey: "name",
     header: "Name",
+    cell: ({ row }) => {
+      const { name } = row.original;
+      return (
+        <div className="flex items-center">
+          <Link href={`/characters/${row.original.id}`}>
+            <p>{name}</p>
+          </Link>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "description",
@@ -19,11 +30,13 @@ export const columns: ColumnDef<Character>[] = [
       const { description } = row.original;
       return (
         <div className="flex items-center">
-          {description ? (
-            <p>{description.slice(0, 100) + "..."}</p>
-          ) : (
-            <p>No description Available!</p>
-          )}
+          <Link href={`/characters/${row.original.id}`}>
+            {description ? (
+              <p>{description.slice(0, 100) + "..."}</p>
+            ) : (
+              <p>No description Available!</p>
+            )}
+          </Link>
         </div>
       );
     },
@@ -35,13 +48,15 @@ export const columns: ColumnDef<Character>[] = [
       const { thumbnail } = row.original;
       return (
         <div className="flex items-center">
-          <Image
-            src={`${thumbnail.path}.${thumbnail.extension}`}
-            alt={row.original.name}
-            width={50}
-            height={50}
-            className="rounded-md"
-          />
+          <Link href={`/characters/${row.original.id}`}>
+            <Image
+              src={`${thumbnail.path}.${thumbnail.extension}`}
+              alt={row.original.name}
+              width={50}
+              height={50}
+              className="rounded-md"
+            />
+          </Link>
         </div>
       );
     },

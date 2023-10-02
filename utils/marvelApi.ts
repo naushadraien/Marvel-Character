@@ -13,9 +13,17 @@ const timeStamp = getTimeStamp();
 const hash = getHash(timeStamp);
 const query = `ts=${timeStamp}&apikey=${API_PUBLIC_KEY}&hash=${hash}`;
 
-export const url = `${API_BASE_URL}/characters?${query}`;
-
 export const getCharacters = async () => {
+  const url = `${API_BASE_URL}/characters?${query}`;
+  const response = await fetch(url);
+  const { data } = await response.json();
+  //   console.log(data);
+
+  return data;
+};
+
+export const detailCharacter = async (characterId: string) => {
+  const url = `${API_BASE_URL}/characters/${characterId}?${query}`;
   const response = await fetch(url);
   const { data } = await response.json();
   //   console.log(data);

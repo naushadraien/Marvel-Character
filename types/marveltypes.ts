@@ -6,6 +6,18 @@ export interface Character {
     path: string;
     extension: string;
   };
+  comics: {
+    items: {
+      resourceURI: string;
+      name: string;
+    }[];
+  };
+  series: {
+    items: {
+      resourceURI: string;
+      name: string;
+    }[];
+  };
 }
 
 export interface CharacterDataWrapper {

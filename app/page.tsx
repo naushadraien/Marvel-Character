@@ -1,4 +1,3 @@
-import { getCharacters } from "@/utils/marvelApi";
 import Characters from "./characters/page";
 
 export default async function Home() {
