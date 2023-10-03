@@ -15,17 +15,25 @@ const query = `ts=${timeStamp}&apikey=${API_PUBLIC_KEY}&hash=${hash}`;
 export const getCharacters = async () => {
   const url = `${API_BASE_URL}/characters?${query}`;
   const response = await fetch(url);
-  const { data } = await response.json();
-  //   console.log(data);
+  const responseData = await response.json();
 
-  return data;
+  if (responseData && responseData.data) {
+    return responseData.data;
+  } else {
+    console.error("Error: Unable to retrieve characters data.");
+    return null; // or handle the error appropriately
+  }
 };
 
 export const detailCharacter = async (characterId: string) => {
   const url = `${API_BASE_URL}/characters/${characterId}?${query}`;
   const response = await fetch(url);
-  const { data } = await response.json();
-  //   console.log(data);
+  const responseData = await response.json();
 
-  return data;
+  if (responseData && responseData.data) {
+    return responseData.data;
+  } else {
+    console.error("Error: Unable to retrieve character details.");
+    return null; // or handle the error appropriately
+  }
 };
