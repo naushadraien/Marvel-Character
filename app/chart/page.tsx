@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 export default async function Chart() {
   const { results } = await getCharacters();
   
-  //   console.log(results[0].name);
 
   const slicedData = results.slice(0, 10);
 

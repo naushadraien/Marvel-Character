@@ -24,11 +24,6 @@ type Props = {
 const CharacterPage = async ({ params }: Props) => {
   const { id } = params;
   const { results } = await detailCharacter(id);
-  //   console.log(results[0].comics.items[0]);
-  // console.log(results[0].series);
-
-  //   const { comics } = results[0];
-  //   console.log(comics.items[0].name);
 
   return (
     <div className="container flex flex-col gap-5 items-center">
