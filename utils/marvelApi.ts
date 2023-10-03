@@ -1,3 +1,4 @@
+import { CharacterDataWrapper } from "@/types/marveltypes";
 import md5 from "md5";
 const API_BASE_URL = process.env.API_BASE_URL;
 const API_PUBLIC_KEY = process.env.API_PUBLIC_KEY;
@@ -12,28 +13,21 @@ const timeStamp = getTimeStamp();
 const hash = getHash(timeStamp);
 const query = `ts=${timeStamp}&apikey=${API_PUBLIC_KEY}&hash=${hash}`;
 
+const handleResponse = async <T>(response: Response) => {
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  const data = await response.json();
+  return data.data as T;
+};
 export const getCharacters = async () => {
   const url = `${API_BASE_URL}/characters?${query}`;
   const response = await fetch(url);
-  const responseData = await response.json();
-
-  if (responseData && responseData.data) {
-    return responseData.data;
-  } else {
-    console.error("Error: Unable to retrieve characters data.");
-    return null; // or handle the error appropriately
-  }
+  return handleResponse<CharacterDataWrapper>(response);
 };
 
 export const detailCharacter = async (characterId: string) => {
   const url = `${API_BASE_URL}/characters/${characterId}?${query}`;
   const response = await fetch(url);
-  const responseData = await response.json();
-
-  if (responseData && responseData.data) {
-    return responseData.data;
-  } else {
-    console.error("Error: Unable to retrieve character details.");
-    return null; // or handle the error appropriately
-  }
+  return handleResponse<CharacterDataWrapper>(response);
 };

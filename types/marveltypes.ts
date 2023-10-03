@@ -19,3 +19,7 @@ export interface Character {
     }[];
   };
 }
+
+export interface CharacterDataWrapper {
+  results: Character[];
+}
