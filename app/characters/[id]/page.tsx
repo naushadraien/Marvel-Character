@@ -7,6 +7,13 @@ import {
 import { Character } from "@/types/marveltypes";
 import { detailCharacter } from "@/utils/marvelApi";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Marvel Universe - Character Detail Page",
+  description: "This is a character detail page",
+};
+
 
 type Props = {
   params: {
